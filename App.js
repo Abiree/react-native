@@ -6,6 +6,8 @@
  * @flow strict-local
  */
 
+import 'react-native-gesture-handler';
+
 import React, { Component } from 'react';
 import type {Node} from 'react';
 import {
@@ -25,6 +27,11 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import PageDeRecherche from './PageDeRecherche'; 
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -52,11 +59,22 @@ const Section = ({children, title}): Node => {
   );
 };
 
-export default class App extends Component<Props>
-{
-render() {
-return React.createElement(Text, {style: styles.description}, "Rechercher des pays !");
+const Pile = createStackNavigator();
+function MaPile() {
+  return (
+  <Pile.Navigator>
+  <Pile.Screen name="Accueil" component={PageDeRecherche} />
+  </Pile.Navigator>
+  );
 }
+export default class App extends Component<Props> {
+  render() {
+    return (
+    <NavigationContainer>
+    <MaPile />
+    </NavigationContainer>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
