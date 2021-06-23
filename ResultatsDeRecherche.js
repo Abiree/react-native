@@ -41,18 +41,27 @@ export default class ResultatsDeRecherche extends Component<Props> {
      height: 1,
      backgroundColor: '#eedded'
      },
+     alpha: {
+     fontSize: 25,
+     fontWeight: 'bold',
+     color: '#023e8a'
+     },
      nom: {
      fontSize: 25,
      fontWeight: 'bold',
-     color: '#58BEEC'
+     color: '#0077b6'
      },
      region: {
-     fontSize: 20,
-     color: '#656565'
+     fontSize:15,
+     color: '#0096c7',
      },
      conteneurLigne: {
      flexDirection: 'row',
      padding: 10
+    },
+    logo: {
+      width: 66,
+      height: 58,
     },
 });
 class ListItem extends React.PureComponent {
@@ -67,13 +76,19 @@ class ListItem extends React.PureComponent {
        underlayColor='#eedddd'>
          <View>
            <View style={styles.conteneurLigne}>
-           <View style={styles.conteneurTexte}>
-           <Text style={styles.nom}>{item.name}</Text>
-           <Text style={styles.region}>{item.region}</Text>
-           <Text style={styles.region}>{item.subregion}</Text>
-           <Text style={styles.region}>{item.capital}</Text>
-           <Text style={styles.region}>{item.population}</Text>
-           </View>
+             <View style={[styles.conteneurTexte,{flexDirection:"row"}]}>
+                <View style={{ flex: 1}}>
+                  <Text style={styles.alpha}>{item.alpha3Code}</Text>
+                </View>
+                <View style={{ flex: 2}}>
+                  <Text style={styles.nom}>{item.name}</Text>
+                  <Text style={styles.region}>Region: {item.region}</Text>
+                  <Text style={styles.region}>Sous Region: {item.subregion}</Text>
+                  <Text style={styles.region}>Capital: {item.capital}</Text>
+                  <Text style={styles.region}>Population: {item.population}</Text>
+                </View>
+
+             </View>
            </View>
            <View style={styles.separator}/>
          </View>
