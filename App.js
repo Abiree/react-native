@@ -30,8 +30,8 @@ import {
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-
-import PageDeRecherche from './PageDeRecherche'; 
+import PageDeRecherche from './PageDeRecherche';
+import ResultatsDeRecherche from './ResultatsDeRecherche';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -64,16 +64,19 @@ function MaPile() {
   return (
   <Pile.Navigator>
   <Pile.Screen name="Accueil" component={PageDeRecherche} />
+  <Pile.Screen name="Resultats" component={ResultatsDeRecherche} />
   </Pile.Navigator>
   );
 }
 export default class App extends Component<Props> {
-  
+
   render() {
     return (
-    <NavigationContainer>
-    <MaPile />
-    </NavigationContainer>
+      <React.StrictMode>
+        <NavigationContainer>
+          <MaPile />
+        </NavigationContainer>
+      </React.StrictMode>
     );
   }
 }
@@ -86,4 +89,3 @@ const styles = StyleSheet.create({
     marginTop: 65,
     },
 });
-
